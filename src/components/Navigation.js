@@ -23,7 +23,7 @@ const Navigation = () => {
     <header className="header">
       <a className="fbLogo" href="http://www.franciscobenedict.com" rel="noopener noreferrer" target="_blank"><img src={fbLogo} alt="" /></a>
       <a className="btn" href="http://www.react.franciscobenedict.com/" rel="noopener noreferrer">Home</a>
-      <a className="btn" href="https://github.com/franciscobenedict/simple-cms" rel="noopener noreferrer" target="_blank">Github</a>
+      <a className="btn" href="https://github.com/franciscobenedict/firebase-simple-cms" rel="noopener noreferrer" target="_blank">Github</a>
       {
         currentUser &&
         <>

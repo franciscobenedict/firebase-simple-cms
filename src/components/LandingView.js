@@ -60,6 +60,7 @@ const LandingView = () => {
   }
 
   const [show, toggleShow] = useState(false);
+  const [toggleTechUsed, setToggleTechUsed] = useState(false);
 
   const [showStep1, setShowStep1] = useState(true);
   const [showStep2, setShowStep2] = useState(false);
@@ -89,14 +90,37 @@ const LandingView = () => {
         <p>In this example, the app communicates with React Realtime Database (for the text) and React Storage (for the images).</p>
         <p>Responsiveness: in mobile-sized view, the content on this page will stack as you would expect.</p>
 
-        {
-          currentUser &&
-          <>
+        <div className="grid_container">
+          <div className="profile_buttons_container">
+            <button className="button submit_btn form_button" onClick={() => setToggleTechUsed(!toggleTechUsed)}>Technology used</button>
+          </div>
+
+          {
+            currentUser &&
             <div className="profile_buttons_container">
               <button className="button submit_btn form_button" onClick={() => toggleShow(!show)}>
                 Configure page:
               </button>
             </div>
+          }
+        </div>
+
+        {
+          toggleTechUsed &&
+          <ul>
+            <li>react</li>
+            <li>firebase</li>
+            <li>javascript</li>
+            <li>scss</li>
+            <li>css3</li>
+            <li>firebase-authentication</li>
+            <li>firebase-storage </li>
+            <li>firebase-realtime-database</li>
+          </ul>
+        }
+        {
+          currentUser &&
+          <>
             {
               show &&
               <div className="cms_form" ref={myRef}>
