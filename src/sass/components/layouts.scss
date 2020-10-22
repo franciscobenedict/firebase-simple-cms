@@ -1,0 +1,215 @@
+.cms_form {
+  background: #cecece;
+  padding: 1.25rem;
+
+  .layout_selector {
+    margin: 1rem 0;
+
+    .layout_style {
+      position: relative;
+      width: 100%;
+
+      .layout_icon {
+        left: 0;
+        position: absolute;
+        text-align: center;
+        top: calc(50% - 2rem);
+        width: 100%;
+        z-index: 0;
+
+        i {
+          font-size: 4rem;
+        }
+      }
+      .field {
+        background-color: rgba(0,0,0,0.6);
+        border-radius: 1em;
+
+        transition: all .25s ease-in-out;
+        -moz-transition: all .25s ease-in-out;
+        -webkit-transition: all .25s ease-in-out;
+        position: relative;
+        z-index: 1;
+
+        &:hover {
+          background-color: rgba(0,0,0,0.4);
+
+          transition: all .25s ease-in-out;
+          -moz-transition: all .25s ease-in-out;
+          -webkit-transition: all .25s ease-in-out;
+        }
+        width: 100%;
+        .ui {
+          background: rgba(255,255,255,0.2);
+          border-radius: 1em;
+          cursor: pointer;
+          display: grid;
+          height: auto;
+          min-height: 300px;
+          place-items: center;
+          width: 100%;
+
+          label {
+            bottom: 2rem;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+          }
+
+          input { display: none; }
+
+          &.checked {
+            background: rgba(255,255,255,0.4);
+          }
+        }
+      }
+    }
+  }
+
+  .layout_form {
+    margin: 1rem 0;
+
+    .edit_element_message {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid orange;
+      color: orange;
+      margin: 20px 0;
+      padding: 0.75rem 1.5rem;
+    }
+
+    .form-group {
+      input[type="text"],
+      textarea,
+      select {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        width: 100%;
+        display: block;
+        outline: none;
+        line-height: 2em;
+        font-size: 1.2em;
+        font-weight: 400;
+        padding: 2em;
+        background-color: #eee;
+        color: #444;
+        resize:none;
+        border: 1px #333 solid;
+        margin-bottom: 1rem;
+        // width: calc(100% - 1.6rem);
+        width: 100%;
+      }
+
+      // input {
+      //   &[type="text"]:focus,
+      //   &[type="date"]:focus,
+      //   &[type="datetime"]:focus,
+      //   &[type="email"]:focus,
+      //   &[type="number"]:focus,
+      //   &[type="search"]:focus,
+      //   &[type="time"]:focus,
+      //   &[type="url"]:focus,
+      //   &[type="password"]:focus
+
+      input[type="text"]:focus,
+      textarea:focus,
+      select:focus {
+        background-color: #cdd;
+        line-height: 2em;
+        width: calc(100% - 1.6rem);
+      }
+
+      input[type="text"]:disabled,
+      textarea:disabled,
+      select:disabled {
+        background-color: rgba(0,0,0,0.2);
+      }
+    }
+  }
+
+  .form_subheading {
+    color: #444;
+    font-size: 1.4rem;
+    margin: 1rem 0;
+  }
+}
+
+
+.layout {
+  // display: grid;
+  // grid-gap: 15px;
+  // grid-template-columns: repeat(auto-fill, minmax(2, 1fr));
+  // background: #eee;
+  margin: 20px 0;
+  // padding-bottom: 1.25rem;
+
+  .changes_warning {
+    border: 1px solid orange;
+    color: orange;
+    margin: 20px 0;
+    padding: 0.75rem 1.5rem;
+  }
+
+  &.making_changes {
+    background: #eee;
+    border: 1px solid orange;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .Layout1,
+  .Layout2,
+  .Layout3,
+  .Layout4 {
+    display: grid;
+    grid-gap: 1rem;
+    margin: 0 auto;
+    // padding: 1.25rem;
+  }
+
+  .Layout1 {
+    .full_text { background: #CCCCCC; padding: 20px; }
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  .Layout2 {
+    .text_left, .text_right {
+      background: #CCCCCC;
+      padding: 20px;
+    }
+    @media (min-width: 768px) {
+      // grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .Layout3 {
+    .text_left { background: #CCCCCC; padding: 20px; }
+    .image_right {
+      img {
+        height: auto;
+        width: 100%;
+      }
+    }
+    @media (min-width: 768px) {
+      // grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .Layout4 {
+    .text_right { background: #CCCCCC; padding: 20px; }
+    .image_left {
+      img {
+        height: auto;
+        width: 100%;
+      }
+    }
+    @media (min-width: 768px) {
+      // grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
