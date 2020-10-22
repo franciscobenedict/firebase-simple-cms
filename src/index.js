@@ -9,7 +9,7 @@ import { HelmetProvider } from 'react-helmet-async';
 // import ProductsContextProvider from './contexts/ProductsContext';
 // import CartContextProvider from './contexts/CartContext';
 // import LanguageContextProvider from './contexts/LanguageContext';
-import LoadingOverlay from './components/LoadingOverlay';
+import LoadingOverlay from './components/partials/LoadingOverlay';
 
 // import { Provider } from 'react-redux';
 // import store from './store';

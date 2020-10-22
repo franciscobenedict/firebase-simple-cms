@@ -2,11 +2,11 @@ import React, {
 } from 'react';
 import { Link } from "react-router-dom";
 import { useUser } from 'reactfire';
-import SignupModal from './SignupModal';
-import LoginModal from './LoginModal';
-import Logout from './Logout';
+import SignupModal from '../SignupModal';
+import LoginModal from '../LoginModal';
+import Logout from '../Logout';
 import Modali, { useModali } from 'modali';
-import fbLogo from '../assets/images/fb-logo-white-header.svg';
+import fbLogo from '../../assets/images/fb-logo-white-header.svg';
 
 const Navigation = () => {
   const currentUser = useUser();
@@ -34,8 +34,8 @@ const Navigation = () => {
       {
         !currentUser &&
         <>
-          <Link to="" onClick={toggleLoginModal}>Login</Link>
-          <Link to="" onClick={toggleSignupModal}>Sign up</Link>
+          <Link className="btn" to="" onClick={toggleLoginModal}>Login</Link>
+          <Link className="btn" to="" onClick={toggleSignupModal}>Sign up</Link>
 
           <Modali.Modal {...loginModal}>
             <LoginModal />

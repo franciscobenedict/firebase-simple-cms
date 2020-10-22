@@ -12,6 +12,7 @@ import {LayoutSelector} from './layouts/LayoutSelector';
 import {LayoutTypes} from './layouts/LayoutTypes';
 import {database} from '../store/base';
 // import ScrollUpButton from "react-scroll-up-button";
+import Layout from './partials/Layout';
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
 // General scroll to element function
@@ -83,76 +84,78 @@ const LandingView = () => {
   const executeScroll = () => scrollToRef(myRef)
 
   return (
-    <main>
-      <div className="container">
-        <h1>{pageTitle}</h1>
-        <p>This is a simple CMS that allows a logged in user with permissions to make changes to the content on this page.</p>
-        <p>In this example, the app communicates with React Realtime Database (for the text) and React Storage (for the images).</p>
-        <p>Responsiveness: in mobile-sized view, the content on this page will stack as you would expect.</p>
+    <Layout title={pageTitle} description="This is the login firebase authentication app">
+      <main>
+        <div className="container">
+          <h1>{pageTitle}</h1>
+          <p>This is a simple CMS that allows a logged in user with permissions to make changes to the content on this page.</p>
+          <p>In this example, the app communicates with React Realtime Database (for the text) and React Storage (for the images).</p>
+          <p>Responsiveness: in mobile-sized view, the content on this page will stack as you would expect.</p>
 
-        <div className="grid_container">
-          <div className="profile_buttons_container">
-            <button className="button submit_btn form_button" onClick={() => setToggleTechUsed(!toggleTechUsed)}>Technology used</button>
+          <div className="grid_container">
+            <div className="profile_buttons_container">
+              <button className="button submit_btn form_button" onClick={() => setToggleTechUsed(!toggleTechUsed)}>Technology used</button>
+            </div>
+
+            {
+              currentUser &&
+              <div className="profile_buttons_container">
+                <button className="button submit_btn form_button" onClick={() => toggleShow(!show)}>
+                  Configure page:
+                </button>
+              </div>
+            }
           </div>
 
           {
-            currentUser &&
-            <div className="profile_buttons_container">
-              <button className="button submit_btn form_button" onClick={() => toggleShow(!show)}>
-                Configure page:
-              </button>
-            </div>
+            toggleTechUsed &&
+            <ul>
+              <li>react</li>
+              <li>firebase</li>
+              <li>javascript</li>
+              <li>scss</li>
+              <li>css3</li>
+              <li>firebase-authentication</li>
+              <li>firebase-storage </li>
+              <li>firebase-realtime-database</li>
+            </ul>
           }
+          {
+            currentUser &&
+            <>
+              {
+                show &&
+                <div className="cms_form" ref={myRef}>
+                  {
+                    showStep1 &&
+                    <>
+                      <LayoutSelector {...({ pageElementLayout, setPageElementLayout })} />
+                      <div className="profile_buttons_container">
+                        <button onClick={step2} className="button submit_btn form_button">Next</button>
+                      </div>
+                    </>
+                  }
+
+                  {
+                    showStep2 &&
+                    <>
+                      { pageElementLayout === "Layout1" && <LayoutForm1 {...({ currentId, contentObjects, addOrEdit, pageElementLayout, step1, show, toggleShow })} /> }
+                      { pageElementLayout === "Layout2" && <LayoutForm2 {...({ currentId, contentObjects, addOrEdit, pageElementLayout, step1, show, toggleShow })} /> }
+                      { pageElementLayout === "Layout3" && <LayoutForm3 {...({ currentId, contentObjects, addOrEdit, pageElementLayout, step1, show, toggleShow })} /> }
+                      { pageElementLayout === "Layout4" && <LayoutForm4 {...({ currentId, contentObjects, addOrEdit, pageElementLayout, step1, show, toggleShow })} /> }
+                    </>
+                  }
+                </div>
+              }
+            </>
+          }
+
+          <LayoutTypes {...({ dBTable, contentObjects, setCurrentId, onDelete, setPageElementLayout, toggleShow, show, showEditView, executeScroll })} />
+
+          {/*<ScrollUpButton />*/}
         </div>
-
-        {
-          toggleTechUsed &&
-          <ul>
-            <li>react</li>
-            <li>firebase</li>
-            <li>javascript</li>
-            <li>scss</li>
-            <li>css3</li>
-            <li>firebase-authentication</li>
-            <li>firebase-storage </li>
-            <li>firebase-realtime-database</li>
-          </ul>
-        }
-        {
-          currentUser &&
-          <>
-            {
-              show &&
-              <div className="cms_form" ref={myRef}>
-                {
-                  showStep1 &&
-                  <>
-                    <LayoutSelector {...({ pageElementLayout, setPageElementLayout })} />
-                    <div className="profile_buttons_container">
-                      <button onClick={step2} className="button submit_btn form_button">Next</button>
-                    </div>
-                  </>
-                }
-
-                {
-                  showStep2 &&
-                  <>
-                    { pageElementLayout === "Layout1" && <LayoutForm1 {...({ currentId, contentObjects, addOrEdit, pageElementLayout, step1, show, toggleShow })} /> }
-                    { pageElementLayout === "Layout2" && <LayoutForm2 {...({ currentId, contentObjects, addOrEdit, pageElementLayout, step1, show, toggleShow })} /> }
-                    { pageElementLayout === "Layout3" && <LayoutForm3 {...({ currentId, contentObjects, addOrEdit, pageElementLayout, step1, show, toggleShow })} /> }
-                    { pageElementLayout === "Layout4" && <LayoutForm4 {...({ currentId, contentObjects, addOrEdit, pageElementLayout, step1, show, toggleShow })} /> }
-                  </>
-                }
-              </div>
-            }
-          </>
-        }
-
-        <LayoutTypes {...({ dBTable, contentObjects, setCurrentId, onDelete, setPageElementLayout, toggleShow, show, showEditView, executeScroll })} />
-
-        {/*<ScrollUpButton />*/}
-      </div>
-    </main>
+      </main>
+    </Layout>
   )
 }
 

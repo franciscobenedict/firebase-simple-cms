@@ -93,7 +93,7 @@ $color: #666;
     z-index: -1;
   }
 
-  &.disabled {
+  &.disabled, &:disabled {
     cursor: not-allowed;
     opacity: 0.2;
 
